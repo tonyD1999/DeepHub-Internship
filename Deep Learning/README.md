@@ -421,7 +421,7 @@ A2 = sigmoid(Z2)  # shape of A2 is (1,m)
     # Hint there are transposes with multiplication because to keep dimensions correct
     ```
 - How we derived the 6 equations of the backpropagation:
-    ![](https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSbUM1bgnlZkh8TqhxlgcWlDHvBgZd6ZoAsjQ&usqp=CAU)
+    ![](https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Backward_Propagation_NN.png)
 
 ### Random Initialization 
 - In logistic regression, it wasn't important to initialize the weights randomly, while in Neural NetWork, we have to initialize randomly.
