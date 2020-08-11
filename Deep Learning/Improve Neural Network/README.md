@@ -526,3 +526,7 @@ on iteration t:
     ```
     Y_hat * (1 - Y_hat)
     ```
+## References
+```
+https://github.com/mbadry1/DeepLearning.ai-Summary
+```
