@@ -36,8 +36,10 @@
     ![](https://miro.medium.com/max/3146/1*EDqq5ZHYyJE70Zvdt1K_vA.png)
 * There are a lot of ways we can put number inside the horizontal or vertical edge detections.
     * **Sobel** filter (The idea is taking care of middle row)
+
         ![](https://homepages.inf.ed.ac.uk/rbf/HIPR2/figs/sobmasks.gif)
     * **Scharr filter** (taking great care of middle row)
+
         ![](https://i0.wp.com/theailearner.com/wp-content/uploads/2019/05/Scharr2.png?w=625&ssl=1)
 * What we learned in the deep learning is that we *don't need to hand craft these numbers*, we can treat them as **weights** and then learn them. It can learn horizontal, vertical, angled, or any edge type automatically rather than getting them by hand.
 * Output size: `(n-f+1)x(n-f+1)`
@@ -66,8 +68,10 @@
     * its have a *center value*.
     * need some asymmetric padding
 * **Valid** padding:
+
     ![](https://cdn-images-1.medium.com/max/650/1*sKTqxILUPNI6P8t-bBIE1w.png)
 * **Same** padding:
+
     ![](https://miro.medium.com/max/666/1*noYcUAa_P8nRilg3Lt_nuA.png)
 
 ## Strided convolution
@@ -83,6 +87,7 @@
     p = (n*s - n + f - s) / 2
     When s = 1 ==> P = (f-1) / 2
     ```
+
     ![](https://indoml.files.wordpress.com/2018/03/stride.png?w=736)
 
 ## Convolutions over volumes
@@ -100,6 +105,7 @@
     * 10 Filters: 3x3x3
     * Result image: 4x4x10
     * In the last result p=0, s=1
+
     ![](https://x-wei.github.io/images/Ng_DLMooc_c4wk1/pasted_image009.png)
 * `n x n x nc * f x f x nc = (n+2p-f)/s + 1) x ((n+2p-f)/s + 1 x nc'` with nc' is the # of filters
 
@@ -134,8 +140,10 @@
     Weights: f[l] * f[l] * nc[l-1] * nc[l]
     bias:  (1, 1, 1, nc[l])
     ```
+
     ![](https://engmrk.com/wp-content/uploads/2018/09/Convolution-Layer-Dimensions.jpg)
 ## A simple ConvNet example
+
 ![](https://media5.datahacker.rs/2018/11/uve%C4%87ana_paint.png)
 * In the last example you seen that the image are getting smaller after each layer and thats the trend now.
 * Types of layer in a convolutional network:
@@ -146,6 +154,7 @@
 ## Pooling layers
 * Other than the conv layers, CNNs often uses pooling layers to *reduce the size of the inputs, speed up computation, and to make some of the features it detects more robust*.
 * Max pooling example:
+
     ![](https://www.researchgate.net/publication/321286547/figure/fig8/AS:564402562793475@1511575465215/Max-Pooling-operation-on-feature-map-22-window.png)
     * f = 2, stride = 2, p = 0
 * The max pooling is saying, if the feature is detected anywhere in this filter then keep a high number. But the main reason why people are using pooling because its works well in practice and reduce computations.
@@ -162,8 +171,10 @@
     * s : stride.
     * Padding are rarely uses here.
     * Max or average pooling.
+
     ![](https://www.researchgate.net/publication/325649211/figure/fig5/AS:635553347284993@1528539134610/Demonstration-of-pooling-operation.png)
 ## Convolutional neural network example
+
 ![](https://miro.medium.com/max/900/1*_l-0PeSh3oL2Wc2ri2sVWA.png)
 * LeNet-5
 * CONV1 and POOL1 is treated as one layer
@@ -213,6 +224,7 @@
 
 * **LeNet-5**
     * The goal for this model was to identify handwritten digits in a `32x32x1` `gray` image. Here are the drawing of it:
+
     ![](https://img-blog.csdnimg.cn/20181025190945556.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3ljYzIwMTE=,size_27,color_FFFFFF,t_70)
     * This model was published in 1998. The last layer wasn't using softmax back then.
     * It has 60k parameters.
@@ -222,6 +234,7 @@
 * **AlexNet**
     * Named after Alex Krizhevsky who was the first author of this paper. The other authors includes Geoffrey Hinton.
     * The goal for the model was the ImageNet challenge which classifies images into 1000 classes. Here are the drawing of the model:
+
     ![](https://images2018.cnblogs.com/blog/1351564/201808/1351564-20180827231301025-1617508598.png)
     * `CONV → POOL → CONV → POOL → CONV → CONV → CONV → POOL → FLATTEN → FC → FC → SOFTMAX`
     * Similar to LeNet-5 but bigger.
@@ -237,6 +250,7 @@
     * Focus on having only these blocks:
         * CONV = 3 X 3 filter, s = 1, same
         * MAX-POOL = 2 X 2 , s = 2
+
     ![](https://media5.datahacker.rs/2019/02/vgg.png)
     * This network is large even by modern standards. It has around 138 million parameters.
         * Most of the parameters are in the fully connected layers.
@@ -252,11 +266,13 @@
 * In this section we will learn about skip connection which makes you take the activation from one layer and suddenly feed it to another layer even much deeper in NN which allows you to train large NNs even with layers greater than 100.
 * **Residual block**
     * ResNets are built out of some Residual blocks.
+
     ![](https://cdn-images-1.medium.com/max/1024/1*r3TGtZpOPdG_kAAVAWZl0w.png)
     * They add a shortcut/skip connection before the second activation.
     * The authors of this block find that you can train a deeper NNs using stacking this block.
 * **Residual Network**
     * Are a NN that consists of some Residual blocks.
+
     ![](https://miro.medium.com/max/1784/1*SP6KSRdom6hu4kUxpdXgiQ.png)
     * These networks can go deeper without hurting the performance. In the normal NN - Plain networks - the theory tell us that if we go deeper we will get a better solution to our problem, but because of the vanishing and exploding gradients problems the performance of the network suffers as it goes deeper. Thanks to Residual Network we can go deeper as we want now.
 
@@ -290,6 +306,7 @@
 
 * Lets take a look at ResNet on images.
     * **ResNet-34**:
+
     ![](https://andpythings.files.wordpress.com/2018/08/r.png?w=1100)
     * All the `3x3` Conv are same Convs.
     * Keep it simple in design of the network.
@@ -298,9 +315,11 @@
     * Two main types of blocks are used in a ResNet, depending mainly on whether the input/output dimensions are same or different. You are going to implement both of them.
     * The dotted lines is the case when the dimensions are different. To solve then they down-sample the input by 2 and then pad zeros to match the two dimensions. There's another trick which is called bottleneck which we will explore later.
 * **Spectrum of Depth**
+
     ![](https://static.bookstack.cn/projects/DeepLearning.ai-Summary/4-%20Convolutional%20Neural%20Networks/Images/12.png)
 * Residual blocks types:
     * Identity block:
+
     ![](https://miro.medium.com/max/875/1*BCbJZXwGDtEdytj9ag_YWw.png)
         * The input activation has the same dimension as the output activation
         * The `CONV` is followed by a batch norm `BN` before `RELU`.
@@ -354,6 +373,7 @@
         return X
     ```
     * Convolution block:
+
     ![](https://miro.medium.com/max/875/1*sb_4xKI_bRoX6jmZcNTRWw.png)
         * Use this type of block when the input and output dimensions don’t match up.
         * The difference with the identity block is that there is a CONV2D layer in the shortcut path.
@@ -432,6 +452,7 @@
     * We will later see that by shrinking it we can save a lot of computations.
     * If we have specified the number of 1 x 1 Conv filters to be the same as the input number of channels then the output will contain the same number of channels. Then the 1 x 1 Conv will act like a non linearity and will learn non linearity operator.
 * Replace fully connected layers with 1 x 1 convolutions as Yann LeCun believes they are the same.
+
     ![](https://media5.datahacker.rs/2019/02/16_2_new.png)
 * [[Lin et al., 2013. Network in network]](https://arxiv.org/abs/1312.4400)
 
@@ -783,6 +804,7 @@
   * `[Pc, bx, by, bh, bw, c1, c2, c3, Pc, bx, by, bh, bw, c1, c2, c3]`
 * Your dataset could be an image with a multiple labels and a rectangle for each label, we should go to your dataset and make the shape and values of Y like we agreed.
   * An example:
+
     ![](http://media5.datahacker.rs/2018/11/slkskssadaw.png)
   * We first initialize all of them to zeros and ?, then for each label and rectangle choose its closest grid point then the shape to fill it and then the best anchor point based on the IOU (higher one). so that the shape of Y for one image should be `[HeightOfGrid, WidthOfGrid,16]`
 
@@ -1027,6 +1049,7 @@
     * Get an input image
     * Output ID if the image is any of the K persons (or not recognized)
     * "who is this person?"
+
     ![](https://pyimagesearch.com/wp-content/uploads/2018/06/face_recognition_opencv_example_02.jpg)
 * We can use a face verification system to make a face recognition system. The accuracy of the verification system has to be high (around 99.9% or more) to be use accurately within a recognition system because the recognition system accuracy will be less than the verification system given K persons. 
 
