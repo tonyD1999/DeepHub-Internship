@@ -88,5 +88,5 @@ Similarly, we will index the first element of y by y<sup><1></sup>, the second y
     
     ![](https://github.com/mbadry1/DeepLearning.ai-Summary/raw/master/5-%20Sequence%20Models/Images/03.png)
     * It's harder to interpreter. It's easier to roll this drawings to the unrolled version.
-* In the discussed RNN architecture, the current output ŷ<sup><t><sup> depends on the previous inputs and activations.
+* In the discussed RNN architecture, the current output y&#770;<sup>\<t></sup> depends on the previous inputs and activations.
 * 
