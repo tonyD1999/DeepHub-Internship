@@ -557,7 +557,7 @@
 * Data Augmentation has also some hyperparameters. A good place to start is to find an open source data augmentation implementation and then use it or fine tune these hyperparameters.
 
 ## State of Computer Vision
-    ![](https://miro.medium.com/max/875/1*WAbuFo-lRtAalWJgHCqDRA.png)
+![](https://miro.medium.com/max/875/1*WAbuFo-lRtAalWJgHCqDRA.png)
 * For a specific problem we may have a little data for it or a lots of data.
 * Speech recognition problems for example has a big amount of data, while image recognition has a medium amount of data and the object detection has a small amount of data nowadays.
 * If your problem has a large amount of data, researchers are tend to use:
